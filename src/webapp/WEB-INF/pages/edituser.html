@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Add user</title>
+    <title> Edit user</title>
 
 </head>
 <body>
-<form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
+<form action="#" th:action="@{/edituser}" th:object="${user}" method="post">
+    <input type="hidden" name="id" th:value="${user.id}" />
     <label for="name">Name</label>
     <input type="text" th:field="*{name}" id="name" placeholder="Name">
     <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
@@ -16,7 +17,7 @@
     <label for="email">Age</label>
     <input type="text" th:field="*{age}" id="age" placeholder="Age">
     <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
-    <input type="submit" value="Add User">
+    <input type="submit" value="Edit User">
 </form>
 </body>
 </html>

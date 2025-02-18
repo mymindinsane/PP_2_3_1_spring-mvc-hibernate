@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void editUser(User user) {
-        entityManager.find(User.class,user);
+        entityManager.find(User.class, user);
     }
 
     @Override
@@ -32,12 +32,18 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> getAllUsers() {
-        TypedQuery<User> query=entityManager.createQuery("from User", User.class);
+        TypedQuery<User> query = entityManager.createQuery("from User", User.class);
         return query.getResultList();
     }
 
     @Override
     public User getUserById(long id) {
-        return entityManager.getReference(User.class,id);
+        return entityManager.getReference(User.class, id);
+    }
+
+    @Override
+    public void updateUser(long id) {
+        User user = entityManager.find(User.class,id);
+        entityManager.merge(user);
     }
 }

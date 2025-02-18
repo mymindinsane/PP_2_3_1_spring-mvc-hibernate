@@ -41,9 +41,20 @@ public class UserController {
         return "redirect:/index";
     }
 
-    @PostMapping("delete")
-    private String deleteUser(@RequestParam("id") long userId){
+    @PostMapping("/delete")
+    private String deleteUser(@RequestParam("id") long userId) {
         userService.deleteUser(userService.getUserById(userId));
+        return "redirect:/index";
+    }
+
+    @GetMapping("/edituser")
+    public String editUser(@ModelAttribute("user") User user) {
+        return "edituser";
+    }
+
+    @PostMapping("/edituser")
+    private String editUser(@RequestParam("id") long userId) {
+        userService.updateUser(userId);
         return "redirect:/index";
     }
 }
