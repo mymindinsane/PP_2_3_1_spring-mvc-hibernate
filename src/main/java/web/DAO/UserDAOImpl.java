@@ -1,13 +1,12 @@
 package web.DAO;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 import web.Model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -20,10 +19,6 @@ public class UserDAOImpl implements UserDAO {
         entityManager.persist(user);
     }
 
-    @Override
-    public void editUser(User user) {
-        entityManager.find(User.class, user);
-    }
 
     @Override
     public void deleteUser(User user) {
@@ -42,8 +37,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(long id) {
+    public void updateUser(long id,String name,String email,int age) {
         User user = entityManager.find(User.class,id);
-        entityManager.merge(user);
+        user.setName(name);
+        user.setEmail(email);
+        user.setAge(age);
     }
 }

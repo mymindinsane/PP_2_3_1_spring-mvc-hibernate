@@ -53,8 +53,9 @@ public class UserController {
     }
 
     @PostMapping("/edituser")
-    private String editUser(@RequestParam("id") long userId) {
-        userService.updateUser(userId);
+    private String editUser(@RequestParam("id") long userId, @ModelAttribute("name") String name,
+                            @ModelAttribute("email") String email, @ModelAttribute(name = "age") int age) {
+        userService.updateUser(userId, name, email, age);
         return "redirect:/index";
     }
 }
