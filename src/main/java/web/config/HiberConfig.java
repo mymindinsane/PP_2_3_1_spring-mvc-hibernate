@@ -46,6 +46,7 @@ public class HiberConfig {
         dataSource.setJdbcUrl(env.getProperty("db.url"));
         dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
+
         return dataSource;
     }
 
@@ -74,6 +75,7 @@ public class HiberConfig {
         entityManagerFactoryBean.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
         entityManagerFactoryBean.setJpaProperties(jpaHibernateProperties());
 
+
         return entityManagerFactoryBean;
     }
 
@@ -85,7 +87,7 @@ public class HiberConfig {
         properties.put(PROPERTY_NAME_HIBERNATE_JDBC_FETCH_SIZE, env.getProperty(PROPERTY_NAME_HIBERNATE_JDBC_FETCH_SIZE));
         properties.put(PROPERTY_NAME_HIBERNATE_JDBC_BATCH_SIZE, env.getProperty(PROPERTY_NAME_HIBERNATE_JDBC_BATCH_SIZE));
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-
+        properties.put("hibernate.hbm2ddl.auto", "update");
         return properties;
     }
 
