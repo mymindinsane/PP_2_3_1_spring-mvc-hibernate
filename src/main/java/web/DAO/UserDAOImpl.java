@@ -35,4 +35,9 @@ public class UserDAOImpl implements UserDAO {
         TypedQuery<User> query=entityManager.createQuery("from User", User.class);
         return query.getResultList();
     }
+
+    @Override
+    public User getUserById(long id) {
+        return entityManager.getReference(User.class,id);
+    }
 }
