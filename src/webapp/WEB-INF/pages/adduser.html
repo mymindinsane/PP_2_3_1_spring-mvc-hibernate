@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title> Add user</title>
@@ -13,7 +13,7 @@
     <label for="email">Email</label>
     <input type="email" th:field="*{email}" id="email" placeholder="Email" required>
     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <label for="email">Age</label>
+    <label for="age">Age</label>
     <input type="number" th:field="*{age}" id="age" placeholder="Age" required min="1" max="150">
     <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
     <input type="submit" value="Add User">
