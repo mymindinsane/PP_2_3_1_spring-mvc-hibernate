@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void deleteUser(User user) {
-        entityManager.remove(user);
+        entityManager.remove(entityManager.merge(user));
     }
 
     @Override
@@ -33,7 +33,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserById(long id) {
-        return entityManager.getReference(User.class, id);
+        return entityManager.find(User.class, id);
     }
 
     @Override
@@ -42,5 +42,6 @@ public class UserDAOImpl implements UserDAO {
         user.setName(name);
         user.setEmail(email);
         user.setAge(age);
+
     }
 }

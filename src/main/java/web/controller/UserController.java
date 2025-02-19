@@ -2,6 +2,7 @@ package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,14 +49,15 @@ public class UserController {
     }
 
     @GetMapping("/edituser")
-    public String editUser(@ModelAttribute("user") User user) {
-        return "edituser";
+    public String editUser(@RequestParam("id") long userId,Model model) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("user",user);
+        return "/edituser";
     }
 
     @PostMapping("/edituser")
-    private String editUser(@RequestParam("id") long userId, @ModelAttribute("name") String name,
-                            @ModelAttribute("email") String email, @ModelAttribute(name = "age") int age) {
-        userService.updateUser(userId, name, email, age);
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.updateUser(user.getId(), user.getName(), user.getEmail(), user.getAge());
         return "redirect:/index";
     }
 }
